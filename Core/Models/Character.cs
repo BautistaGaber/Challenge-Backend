@@ -37,12 +37,11 @@ namespace ChallengeAlkemy.Models
             movies.ForEach(m => movieList.Add(new FullMovieDTO(m)));
             return movieList;
         }
-
         //public Character(string image, string name, int age, decimal weight, string history)
         //    : base()
         //{
         //    Image = image;
-        //    Name = name;    
+        //    Name = name;
         //    Age = age;
         //    Weight = weight;
         //    History = history;

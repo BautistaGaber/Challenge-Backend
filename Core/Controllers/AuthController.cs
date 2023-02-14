@@ -1,4 +1,6 @@
 ﻿using ChallengeAlkemy.Core.User;
+using ChallengeAlkemy.Core.Users;
+using ChallengeAlkemy.Core.Users.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -13,51 +15,48 @@ namespace ChallengeAlkemy.Core.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        private readonly IUserService _userService;
+        public AuthController(IUserService userService)
+        {
+            _userService = userService;
+        }
 
-        public static Users.User user = new Users.User();
+        //[HttpPost("register")]
+        //public async Task<ActionResult<Users.User>> Register([FromBody] UserDTO request)
+        //{
+        //    Users.User user = new Users.User();
+        //    CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+
+        //    user.Username = request.UserName;
+        //    user.PasswordHash = passwordHash;
+        //    user.PasswordSalt = passwordSalt;
+
+        //    return Ok(user);
+        //}
 
         [HttpPost("register")]
-        public async Task<ActionResult<Users.User>> Register([FromBody] UserDTO request)
+        public async Task<ActionResult<Users.User>> Register([FromBody] UserDTO userDTO)
         {
-            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
-
-            user.Username = request.UserName;
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
-
-            return Ok(user);
-        }
-
-        private void CreatePasswordHash (string password, out byte[] passwordHash, out byte[] passwordSalt)
-        {
-            using (var hmac = new HMACSHA512())
-            {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+            var result = _userService.GetUserByUsername(userDTO.UserName);
+            if (result.Result == null) {
+                var userACrear = await _userService.CreateUser(userDTO);
+                return Ok(userACrear);
             }
-        }
-
-        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
-        {
-            using (var hmac = new HMACSHA512(passwordSalt))
-            {
-                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
-                return computedHash.SequenceEqual(passwordHash);
-            }
+            return BadRequest();
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login([FromBody]UserDTO request)
+        public async Task<ActionResult<string>> Login([FromBody]UserDTO userDTO)
         {
-            if(user.Username != request.UserName)
+            var user = await _userService.GetUserByUsername(userDTO.UserName);
+            if (user.Username != userDTO.UserName)
             {
-                return BadRequest("User not found");               
+                return BadRequest("User not found");
             }
-            if(!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+            if (!_userService.VerifyPasswordHash(userDTO.Password, user.PasswordHash, user.PasswordSalt))
             {
                 return BadRequest("Wrong Password");
             }
-
             string token = CreateToken(user);
             return Ok(token);
         }

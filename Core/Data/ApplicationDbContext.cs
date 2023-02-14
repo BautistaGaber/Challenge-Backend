@@ -1,4 +1,5 @@
-﻿using ChallengeAlkemy.Models;
+﻿using ChallengeAlkemy.Core.Users;
+using ChallengeAlkemy.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ChallengeAlkemy.Data
@@ -10,6 +11,7 @@ namespace ChallengeAlkemy.Data
         public DbSet<Character> Characters { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Gender> Genders { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }

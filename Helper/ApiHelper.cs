@@ -1,4 +1,6 @@
-﻿using ChallengeAlkemy.DTO.DTOs;
+﻿using ChallengeAlkemy.Core.User;
+using ChallengeAlkemy.Core.Users;
+using ChallengeAlkemy.DTO.DTOs;
 using ChallengeAlkemy.DTO.MoviesDTO;
 using ChallengeAlkemy.Models;
 using System.ComponentModel.DataAnnotations;
@@ -31,5 +33,15 @@ namespace ChallengeAlkemy.Helper
 
             return character;
         }
+
+        public static User CreateUserToEntity(UserDTO dto)
+        {
+            User user = new User();
+            user.Username = dto.UserName;
+            user.Password = dto.Password;
+
+            return user;
+        }
+
     }
 }

@@ -2,6 +2,9 @@ using ChallengeAlkemy.Core.Repositories;
 using ChallengeAlkemy.Core.Repositories.Interfaces;
 using ChallengeAlkemy.Core.Services;
 using ChallengeAlkemy.Core.Services.Interfaces;
+using ChallengeAlkemy.Core.Users.Repositories;
+using ChallengeAlkemy.Core.Users.Services;
+using ChallengeAlkemy.Core.Users.Services.Interfaces;
 using ChallengeAlkemy.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -22,6 +25,8 @@ services.AddScoped<IGenderRepository, GenderRepository>();
 services.AddScoped<IGenderService, GenderService>();
 services.AddScoped<ICharacterRepository, CharacterRepository>();
 services.AddScoped<ICharacterServices, CharacterService>();
+services.AddScoped<IUserService, UserSevice>();
+services.AddScoped<IUserRepository, UserRepository>();
 
 services.AddSwaggerGen(c =>
 {

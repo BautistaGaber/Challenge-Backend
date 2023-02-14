@@ -17,18 +17,5 @@ namespace ChallengeAlkemy.Models
 
        public List<Movie> Movies { get; set; }
 
-        //public Gender()
-        //{
-        //    Movies = new List<Movie>();
-        //}
-
-        //public Gender(string name, string image)
-        //    : base()
-        //{
-        //    Name = name;
-        //    Image = image;
-        //}
-
-
     }
 }
