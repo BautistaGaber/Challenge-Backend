@@ -9,7 +9,7 @@ namespace ChallengeAlkemy.Core.Services.Interfaces
         Task<List<ViewCharacterDTO>> GetCharacters();
         Task<List<FullCharacterDTO>> GetCharactersWithAllProperties();
         Task<Character> GetCharacterById(int id);
-        Task <Character> CreateCharacter(CreateCharacterDTO createcharacterdto);
+        Task <Character> CreateCharacter(CreateCharacterDTO createCharacterDto);
         Task CharaterMovie(int id, List<int> characterid);
         Task UpdateCharacter(Character character);
         Task DeleteCharacter(int id);
