@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ChallengeAlkemy</name>
+    </assembly>
+    <members>
+        <member name="M:ChallengeAlkemy.Middleware.ExceptionHandler.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+               Procesa el mensaje, atrapando las excepciones generadas.
+            </summary>
+        </member>
+    </members>
+</doc>
