@@ -21,19 +21,6 @@ namespace ChallengeAlkemy.Core.Controllers
             _userService = userService;
         }
 
-        //[HttpPost("register")]
-        //public async Task<ActionResult<Users.User>> Register([FromBody] UserDTO request)
-        //{
-        //    Users.User user = new Users.User();
-        //    CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
-
-        //    user.Username = request.UserName;
-        //    user.PasswordHash = passwordHash;
-        //    user.PasswordSalt = passwordSalt;
-
-        //    return Ok(user);
-        //}
-
         [HttpPost("register")]
         public async Task<ActionResult<Users.User>> Register([FromBody] UserDTO userDTO)
         {
@@ -42,7 +29,7 @@ namespace ChallengeAlkemy.Core.Controllers
                 var userACrear = await _userService.CreateUser(userDTO);
                 return Ok(userACrear);
             }
-            return BadRequest();
+            return BadRequest("El Nombre de usuario ya existe");
         }
 
         [HttpPost("login")]

@@ -25,7 +25,7 @@ services.AddScoped<IGenderRepository, GenderRepository>();
 services.AddScoped<IGenderService, GenderService>();
 services.AddScoped<ICharacterRepository, CharacterRepository>();
 services.AddScoped<ICharacterServices, CharacterService>();
-services.AddScoped<IUserService, UserSevice>();
+services.AddScoped<IUserService, UserService>();
 services.AddScoped<IUserRepository, UserRepository>();
 
 services.AddSwaggerGen(c =>
