@@ -54,9 +54,14 @@ namespace ChallengeAlkemy.Core.Services
             return list;
         }
 
-        public async Task UpdateCharacter(Character character)
+        public async Task UpdateCharacter(UpdateCharacterDTO upgradeCharacterDto, int id)
         {
-            await _repository.UpdateCharacter(character); 
+
+            Character character = await _repository.GetCharacterById(id);
+            if (character == null)
+                return;
+            await _repository.UpdateCharacter(ApiHelper.UpdateCharacterToEntity(upgradeCharacterDto,character)); 
         }
+
     }
 }

@@ -49,9 +49,9 @@ namespace ChallengeAlkemy.Core.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateCharacter(Character character)
-        {
-            var result = _service.UpdateCharacter(character);
+        public async Task<IActionResult> UpdateCharacter([FromBody]UpdateCharacterDTO updateCharacterDto, [FromQuery]int id)
+        {           
+            var result = _service.UpdateCharacter(updateCharacterDto,id);
             if (result == null)
             {
                 return BadRequest();

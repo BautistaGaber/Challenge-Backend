@@ -3,6 +3,7 @@ using ChallengeAlkemy.Core.Users;
 using ChallengeAlkemy.DTO.DTOs;
 using ChallengeAlkemy.DTO.MoviesDTO;
 using ChallengeAlkemy.Models;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
@@ -41,6 +42,27 @@ namespace ChallengeAlkemy.Helper
             user.Password = dto.Password;
 
             return user;
+        }
+         
+        public static Character UpdateCharacterToEntity(UpdateCharacterDTO dto, Character character)
+        {
+            character.Age = dto.Age;
+            character.Weight = dto.Weight;
+            character.Name = dto.Name;
+            character.History = dto.History;
+            character.Image = dto.Image;
+
+            return character;
+        }
+
+        public static Movie UpdateMovieToEntity(UpdateMovieDTO dto, Movie movie)
+        {
+            movie.GenderId = dto.GenderId;
+            movie.Title = dto.Title;
+            movie.Qualification = dto.Qualification;
+            movie.Image = dto.Image;
+
+            return movie;
         }
 
     }

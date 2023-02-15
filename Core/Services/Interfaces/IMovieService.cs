@@ -11,7 +11,7 @@ namespace ChallengeAlkemy.Core.Services.Interfaces
         Task<Movie> GetMovieById(int id);
         Task<List<Movie>> SerchMovie(string title, int? genderid);
         Task<Movie> CreateMovie(CreateMovieDTO movieDTO);
-        Task UpdateMovie(Movie movie);
+        Task UpdateMovie(UpdateMovieDTO updateMovieDto, int id);
         Task DeleteMovie(int id);
     }
 }

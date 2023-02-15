@@ -11,7 +11,7 @@ namespace ChallengeAlkemy.Core.Services.Interfaces
         Task<Character> GetCharacterById(int id);
         Task <Character> CreateCharacter(CreateCharacterDTO createCharacterDto);
         Task CharaterMovie(int id, List<int> characterid);
-        Task UpdateCharacter(Character character);
+        Task UpdateCharacter(UpdateCharacterDTO updateCharacterDto, int id);
         Task DeleteCharacter(int id);
     }
 }

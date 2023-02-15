@@ -45,9 +45,14 @@ namespace ChallengeAlkemy.Core.Services
             return await _repository.SerchMovie(title, genderid);
         }
 
-        public async Task UpdateMovie(Movie movie)
+        public async Task UpdateMovie(UpdateMovieDTO updateMovieDto, int id)
         {
-            await _repository.UpdateMovie(movie);
+            Movie movie = await _repository.GetMovieById(id);
+            if(movie == null)
+            {
+                return;
+            }
+            await _repository.UpdateMovie(ApiHelper.UpdateMovieToEntity(updateMovieDto,movie));
         }
     }
 }

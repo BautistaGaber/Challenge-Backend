@@ -7,11 +7,11 @@ using System.Text;
 
 namespace ChallengeAlkemy.Core.Users.Services
 {
-    public class UserSevice : IUserService
+    public class UserService : IUserService
     {
         private readonly IUserRepository _repository;
 
-        public UserSevice(IUserRepository repository)
+        public UserService(IUserRepository repository)
         {
             _repository = repository;
         }

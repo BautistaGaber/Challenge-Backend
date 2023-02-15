@@ -26,14 +26,14 @@ namespace ChallengeAlkemy.Core.Controllers
         }
 
         [HttpGet]
-        [Route("/buscarPelicula/{id}")]
+        [Route("/SerchMovie/{id}")]
         public async Task<IActionResult> GetMoviesById([FromRoute] int id)
         {
             return Ok(await _service.GetMovieById(id));
         }
 
         [HttpGet]
-        [Route("/buscarPelicula")]
+        [Route("/SerchMovie")]
         public async Task<IActionResult> SerchMovie([FromQuery]string title, [FromQuery] int gender)
         {
             return Ok(await _service.SerchMovie(title, gender));
@@ -52,9 +52,9 @@ namespace ChallengeAlkemy.Core.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateMovie(Movie movie)
+        public async Task<IActionResult> UpdateMovie(UpdateMovieDTO updateMovieDto, int id)
         {
-            var result = _service.UpdateMovie(movie);
+            var result = _service.UpdateMovie(updateMovieDto, id);
             if( result == null)
             {
                 return BadRequest();
